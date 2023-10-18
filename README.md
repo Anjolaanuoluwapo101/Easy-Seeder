@@ -8,7 +8,7 @@ Check here -> https://fakerphp.github.io/ <br>
 -SQLite <br>
 -Can definitely support more RDBMS due to it flexibity just contact me. <br>
 
-** -INSTALLATION AND CONFIGURATION: ** <br>
+** -INSTALLATION AND CONFIGURATION: **
 -Simply git clone this repo. <br>
 -After that require the index.php file from your project. <br>
 (that's require "path/to/seeder/index.php") <br>
@@ -19,7 +19,7 @@ Note:The database.db present in the root folder (delete or ignore it) is an SQLi
 -If you're working with MySQL simply fill up the other keys the the appropriate values <br>
 
 
-** -USAGE: ** <br>
+** -USAGE: ** 
 The interesting part ;) <br>
 
 -To initialize the class for an SQLite connection ___(vital step) <br>
@@ -28,22 +28,28 @@ $seeder = new Seeder\Seeder('sqlite');
 ```
 <br>
 -To initialize the class for an SQLite connection ___(vital step) <br>
+
 ```
 $seeder = new Seeder\Seeder('mysql');
 ```
+
 <br>
 -To set the table to be populated ___(vital step) <br>
+
 ```
 $seeder->table = 'testDB'; 
 ```
+
 <br>
 -To set the fields of the table(Column names) ___(vital step) <br>
+
 ```
 $seeder->setFields(array(
 'name' => array("type" => "text","length"=>20),
 'age' => array("type" => "int","length"=>2),
 ));
 ```
+
 <br>
 
 let me explain <br>
@@ -58,55 +64,65 @@ $seeder->length = 10: //accepts an integer only <br>
 Note: If "length" attribute is present for a particular field,the will override this general length when generating fake data for that field. <br>
 
 -You can specify hidden fields (fields that have been defined using Seeder\Seeder::setFields(array) but you want you still prevent them from being loaded with fake data); <br>
+
 ```
 $seeder->hiddenFields = array('email',...,...); //accepts an array only
 ```
+
  <br>
 
-** -Special Features ** <br>
+** -Special Features **
 -This library has what it call constrainedData and preDefinedData feature <br>
 
-** -Prededined Data: ** <br>
+** -Prededined Data: **
 -Let's say you have a particular column in your database(which you have specified using Seeder\Seeder::setFields(array)) called "gender"; <br>
 -logically you will either want to fill it with 'male' or 'female'? <br> 
 -this is where preDefinedData feature helps. <br>
+
 ```
 $seeder->preDefinedData = array(
 "gender" => array("male","female"),
 ); 
 ```
+
 <br>
 
 Ofcourse,you can specify more than one field that will utilize this preDefinedData feature <br>
+
 ```
 $seeder->preDefinedData = array(
 "gender" => array("male","female"),
 "location" => array("Nigeria","Sweden"),
 );
 ```
+
 <br>
 -The "location" column will only ever contain either "Nigeria" or "Sweden" <br>
 Note: The selection of preDefinedData for one column is completely independent of the other.(For dependency check the Constrained Data feature) <br>
 Note:This is good for creating foreign key(that consist of one column only) <br>
 
 
-** -Constrained Data: ** <br>
+** -Constrained Data: **
 -Let's say you have two/more columns where you want the data in one column to determine the data in another column <br>
 -Let's say you have you have two columns like "gender" and "is_masculine" <br>
 -logically if "gender" is male,then "is_masculine" should be "yes" right? and vice versa. <br>
+
 ```
 $seeder->constrainedData = array(
  "gender" => array("male","female"),
  "is_masculine" => array("yes","no")
  ): 
  ```
+ 
  <br>
 
 -Behind the scenes,the library simply pulls out a row from this 2-dimensional array provided <br>
 -which would either be 
+
 ```
 array("gender"=>"male","is_masculine" => "yes") or array("gender"=>"female","is_masculine" => "no")
 ```
+
 <br>
 Note:This would be useful for composite primary/foreign key creation and certain Database Relationships <br>
 
@@ -116,6 +132,7 @@ MUCH MORE IMPORTANT NOTICE: You can not have a field present in both preDefinedD
 -Only two limitations to this: <br>
 -The function must be an anonymous function <br>
 -The function can only accept one parameter and must be called $length <br>
+
 ```
 $modifiedTextFakerFunction = function($length){
  return "static string";
@@ -125,8 +142,9 @@ $seeder->addCustomFunction('text',$modifiedTextFakerFunction);
 //this will override any faker function for the data type 'text'; 
 ```
 
-** -You have come this far! ** <br>
+** -You have come this far! **
 -To populate the database after this,simply run <br>
+
 ```
 echo $seeder->seed(n); // n is the number of records you want to create
 ```

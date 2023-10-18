@@ -1,15 +1,15 @@
-### Easy to use Database Seeder. 
+## Easy to use Database Seeder. 
 <br>
 Note: Uses PHP faker library(not the archived one) under the hood. <br>
 Check here -> https://fakerphp.github.io/ <br>
 
-## Currently Supports: 
+### Currently Supports: 
 <br>
 -MySQL(MariaDB)<br>
 -SQLite <br>
 -Can definitely support more RDBMS due to it flexibity just contact me. <br>
 
-## -INSTALLATION AND CONFIGURATION:
+### -INSTALLATION AND CONFIGURATION:
 -Simply git clone this repo. <br>
 -After that require the index.php file from your project. <br>
 (that's require "path/to/seeder/index.php") <br>
@@ -20,7 +20,7 @@ Note:The database.db present in the root folder (delete or ignore it) is an SQLi
 -If you're working with MySQL simply fill up the other keys the the appropriate values <br>
 
 
-## -USAGE:
+### -USAGE:
 The interesting part ;) <br>
 
 -To initialize the class for an SQLite connection ___(vital step) <br>
@@ -53,16 +53,21 @@ $seeder->setFields(array(
 
 <br>
 
-let me explain <br>
--'name' and 'age' in the above,are the column names. <br>
--The description(child) array for each contains the description of tne columns. <br>
--The description array can accept contain the "type" and "length" attributes,and you probably guessed right. <br>
--The "type" is required and should be any of the data types acceptable by either MySQL/SQLite (check the src/MySQLConnector or SQLiteConnector class to modify this) <br>
--The "length" is optional and it helps limits the length of the data generated for that column <br>
--You may decide not to specify the "length" in some of the defined fields... <br>
+Let me explain further <br>
+-'name' and 'age' in the above,are the column names. <br> <br>
+-The description(child) array for each contains the description of the columns. <br> <br>
+-The description array can accept the "type" and "length" attributes,and you probably guessed right. <br> <br>
+-The "type" is required and should be any of the data types acceptable by either MySQL/SQLite (check the src/MySQLConnector or SQLiteConnector class to modify this) <br> <br>
+-The "length" is optional and it helps limits the length of the data generated for that column <br> <br>
+-You may decide not to specify the "length" in some of the defined fields... <br> <br>
 -Instead,you can specify a general length <br>
-$seeder->length = 10: //accepts an integer only <br>
-Note: If "length" attribute is present for a particular field,the will override this general length when generating fake data for that field. <br>
+
+```
+$seeder->length = 10: //accepts an integer only 
+```
+
+### Note:
+-If "length" attribute is present for a particular field,the will override this general length when generating fake data for that field. <br>
 
 -You can specify hidden fields (fields that have been defined using Seeder\Seeder::setFields(array) but you want you still prevent them from being loaded with fake data); <br>
 
@@ -72,13 +77,13 @@ $seeder->hiddenFields = array('email',...,...); //accepts an array only
 
  <br>
 
-## -Special Features 
--This library has what it call constrainedData and preDefinedData feature <br>
+### -Special Features 
+-This library has what it call Constrained Data and Predefined Data feature <br>
 
-## -Prededined Data:
+### -Predefined Data:
 -Let's say you have a particular column in your database(which you have specified using Seeder\Seeder::setFields(array)) called "gender"; <br>
 -logically you will either want to fill it with 'male' or 'female'? <br> 
--this is where preDefinedData feature helps. <br>
+-this is where Predefined Data feature helps. <br>
 
 ```
 $seeder->preDefinedData = array(
@@ -88,7 +93,7 @@ $seeder->preDefinedData = array(
 
 <br>
 
-Ofcourse,you can specify more than one field that will utilize this preDefinedData feature <br>
+Ofcourse,you can specify more than one field that will utilize this Predefined Data feature <br>
 
 ```
 $seeder->preDefinedData = array(
@@ -99,11 +104,13 @@ $seeder->preDefinedData = array(
 
 <br>
 -The "location" column will only ever contain either "Nigeria" or "Sweden" <br>
-Note: The selection of preDefinedData for one column is completely independent of the other.(For dependency check the Constrained Data feature) <br>
-Note:This is good for creating foreign key(that consist of one column only) <br>
+
+### Note:
+-The selection of Predefined Data for one column is completely independent of the other.(For dependency check the Constrained Data feature) <br>
+-This is good for creating foreign key(that consist of one column only) <br>
 
 
-## -Constrained Data:
+### -Constrained Data:
 -Let's say you have two/more columns where you want the data in one column to determine the data in another column <br>
 -Let's say you have you have two columns like "gender" and "is_masculine" <br>
 -logically if "gender" is male,then "is_masculine" should be "yes" right? and vice versa. <br>
@@ -125,9 +132,11 @@ array("gender"=>"male","is_masculine" => "yes") or array("gender"=>"female","is_
 ```
 
 <br>
-Note:This would be useful for composite primary/foreign key creation and certain Database Relationships <br>
+### Note:
+-This would be useful for composite primary/foreign key creation and certain Database Relationships <br>
 
-MUCH MORE IMPORTANT NOTICE: You can not have a field present in both preDefinedData and constrainedData.(Don't worry,the library throws a fatal error if that's done); <br>
+### MUCH MORE IMPORTANT NOTICE: 
+-You can not have a field present in both Predefined Data and Constrained Data.(Don't worry,the library throws a fatal error if that's done); <br>
 
 -You can also create your own faker functions! <br>
 -Only two limitations to this: <br>
@@ -143,7 +152,7 @@ $seeder->addCustomFunction('text',$modifiedTextFakerFunction);
 //this will override any faker function for the data type 'text'; 
 ```
 
-## -You have come this far!
+### -You have come this far!
 -To populate the database after this,simply run <br>
 
 ```

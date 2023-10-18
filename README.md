@@ -3,12 +3,13 @@
 Note: Uses PHP faker library(not the archived one) under the hood. <br>
 Check here -> https://fakerphp.github.io/ <br>
 
-** Currently Supports: ** <br>
--MySQL(MariaDB)v<br>
+## Currently Supports: 
+<br>
+-MySQL(MariaDB)<br>
 -SQLite <br>
 -Can definitely support more RDBMS due to it flexibity just contact me. <br>
 
-** -INSTALLATION AND CONFIGURATION: **
+## -INSTALLATION AND CONFIGURATION:
 -Simply git clone this repo. <br>
 -After that require the index.php file from your project. <br>
 (that's require "path/to/seeder/index.php") <br>
@@ -19,7 +20,7 @@ Note:The database.db present in the root folder (delete or ignore it) is an SQLi
 -If you're working with MySQL simply fill up the other keys the the appropriate values <br>
 
 
-** -USAGE: ** 
+## -USAGE:
 The interesting part ;) <br>
 
 -To initialize the class for an SQLite connection ___(vital step) <br>
@@ -71,10 +72,10 @@ $seeder->hiddenFields = array('email',...,...); //accepts an array only
 
  <br>
 
-** -Special Features **
+## -Special Features 
 -This library has what it call constrainedData and preDefinedData feature <br>
 
-** -Prededined Data: **
+## -Prededined Data:
 -Let's say you have a particular column in your database(which you have specified using Seeder\Seeder::setFields(array)) called "gender"; <br>
 -logically you will either want to fill it with 'male' or 'female'? <br> 
 -this is where preDefinedData feature helps. <br>
@@ -102,7 +103,7 @@ Note: The selection of preDefinedData for one column is completely independent o
 Note:This is good for creating foreign key(that consist of one column only) <br>
 
 
-** -Constrained Data: **
+## -Constrained Data:
 -Let's say you have two/more columns where you want the data in one column to determine the data in another column <br>
 -Let's say you have you have two columns like "gender" and "is_masculine" <br>
 -logically if "gender" is male,then "is_masculine" should be "yes" right? and vice versa. <br>
@@ -142,7 +143,7 @@ $seeder->addCustomFunction('text',$modifiedTextFakerFunction);
 //this will override any faker function for the data type 'text'; 
 ```
 
-** -You have come this far! **
+## -You have come this far!
 -To populate the database after this,simply run <br>
 
 ```

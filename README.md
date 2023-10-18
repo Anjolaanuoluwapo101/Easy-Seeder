@@ -1,4 +1,4 @@
-##Easy to use Database Seeder.
+##Easy to use Database Seeder. \n
 Note: Uses PHP faker library(not the archived one) under the hood.
 Check here -> https://fakerphp.github.io/
 
@@ -8,7 +8,7 @@ Currently Supports:
 -Can definitely support more RDBMS due to it flexibity just contact me.
 
 -INSTALLATION AND CONFIGURATION:
--Simply git clone this repo.
+-Simply git clone this repo. \n
 -After that require the index.php file from your project.
 (that's require "path/to/seeder/index.php")
 -Next step is to set up the .env file

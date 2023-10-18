@@ -1,4 +1,4 @@
-##Easy to use Database Seeder. \n
+##Easy to use Database Seeder. <br>
 Note: Uses PHP faker library(not the archived one) under the hood.
 Check here -> https://fakerphp.github.io/
 
